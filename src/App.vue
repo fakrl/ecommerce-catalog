@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>E-Commerce Catalog</h1>
     <ProductDisplay />
   </div>
 </template>
@@ -17,14 +16,14 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  margin: 30px 0;
-  color: #2c3e50;
+#app {
+  width: 100%;
+  min-height: 100vh;
 }
 </style>
