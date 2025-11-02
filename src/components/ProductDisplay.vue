@@ -115,30 +115,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "@/assets/style/page.css";
-
-/* Override unavailable section untuk pasang SVG di dalam card */
-.unavailable-card {
-  position: relative;
-  background: var(--white) url("@/assets/images/sad-face.svg") no-repeat center
-    70%;
-  background-size: 70%;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 100px 60px;
-  max-width: 1034px;
-  width: calc(100% - 40px);
-  margin: 0 20px;
-  min-height: 580px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.unavailable-content {
-  position: relative;
-  z-index: 10;
-}
 </style>
