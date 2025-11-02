@@ -386,74 +386,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* tambahin ini */
+  background-image: url('@/assets/images/sad-face.svg');
+  background-repeat: no-repeat;
+  background-position: center 60%;
+  background-size: 60%;
+  opacity: 1;
 }
 
-/* Sad Face - Eyes (using : character) */
-.unavailable-card::before {
-  content: ':';
-  position: absolute;
-  width: 229px;
-  height: 1002px;
-  left: 26px;
-  top: 107px;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 828px;
-  line-height: 1002px;
-  color: rgba(0, 0, 0, 0.1);
-  transform: rotate(90deg);
-  z-index: 0;
-}
-
-/* Sad Face - Mouth (using ( character) */
-.unavailable-card::after {
-  content: '(';
-  position: absolute;
-  width: 300px;
-  height: 1002px;
-  left: 2px;
-  top: 246px;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 828px;
-  line-height: 1002px;
-  color: rgba(0, 0, 0, 0.1);
-  transform: rotate(90deg);
-  z-index: 0;
-}
-
-/* Eyebrow Left */
-.unavailable-content::before {
-  content: '';
-  position: absolute;
-  width: 185.5px;
-  height: 29.21px;
-  left: 133px;
-  top: 14px;
-  border-top: 25px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  z-index: 0;
-}
-
-/* Eyebrow Right */
-.unavailable-content::after {
-  content: '';
-  position: absolute;
-  width: 185.5px;
-  height: 29.21px;
-  right: 133px;
-  top: 14px;
-  border-top: 25px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  transform: scaleX(-1);
-  z-index: 0;
-}
-
-/* Sad Face Content Wrapper (above the face) */
 .unavailable-content {
   position: relative;
-  z-index: 10;
+  z-index: 20;
+  background: transparent;
 }
+
 
 .unavailable-title {
   font-family: 'Inter';

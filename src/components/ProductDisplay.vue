@@ -2,8 +2,8 @@
   <div
     class="product-container"
     :class="{
-      'men-section': product && product.category === 'men\'s clothing',
-      'women-section': product && product.category === 'women\'s clothing',
+      'men-section': product && product.category === `men's clothing`,
+      'women-section': product && product.category === `women's clothing`,
       'unavailable-section': !product && !isLoading,
     }"
   >
@@ -13,7 +13,7 @@
       <p>Loading product...</p>
     </div>
 
-    <!-- Product Display (Men's & Women's) -->
+    <!-- Product Display -->
     <div v-else-if="product" class="product-card">
       <!-- Product Image -->
       <div class="product-image-wrapper">
@@ -34,9 +34,10 @@
                 v-for="n in 5"
                 :key="n"
                 class="star"
-                :class="
-                  n <= Math.round(product.rating.rate) ? 'filled' : 'empty'
-                "
+                :class="{
+                  filled: n <= Math.round(product.rating.rate),
+                  empty: n > Math.round(product.rating.rate),
+                }"
               ></span>
             </div>
           </div>
@@ -56,12 +57,10 @@
       </div>
     </div>
 
-    <!-- Unavailable Product -->
+    <!-- Unavailable Section -->
     <div v-else class="unavailable-card">
-      <!-- Sad face akan muncul via ::before dan ::after CSS -->
-
       <div class="unavailable-content">
-        <h2 class="unavailable-title">This product is unavailable to show</h2>
+        <h3 class="unavailable-title">This product is unavailable to show</h3>
         <button class="btn-next" @click="nextProduct">Next product</button>
       </div>
     </div>
@@ -89,8 +88,6 @@ export default {
         );
         const data = await response.json();
 
-        console.log("Fetched:", data.title, "- Category:", data.category);
-
         if (
           data.category === "men's clothing" ||
           data.category === "women's clothing"
@@ -106,14 +103,9 @@ export default {
         this.isLoading = false;
       }
     },
-
     nextProduct() {
       this.currentIndex++;
-
-      if (this.currentIndex > 20) {
-        this.currentIndex = 1;
-      }
-
+      if (this.currentIndex > 20) this.currentIndex = 1;
       this.fetchProduct();
     },
   },
@@ -125,4 +117,28 @@ export default {
 
 <style scoped>
 @import "@/assets/style/page.css";
+
+/* Override unavailable section untuk pasang SVG di dalam card */
+.unavailable-card {
+  position: relative;
+  background: var(--white) url("@/assets/images/sad-face.svg") no-repeat center
+    70%;
+  background-size: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 100px 60px;
+  max-width: 1034px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.unavailable-content {
+  position: relative;
+  z-index: 10;
+}
 </style>
