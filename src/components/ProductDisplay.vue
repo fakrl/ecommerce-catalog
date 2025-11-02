@@ -13,61 +13,57 @@
       <p>Loading product...</p>
     </div>
 
-    <!-- Men's Clothing -->
-    <div
-      v-else-if="product && product.category === 'men\'s clothing'"
-      class="product-card"
-    >
-      <h2 class="product-title">{{ product.title }}</h2>
-      <p class="category-badge">{{ product.category }}</p>
-      <p class="rating">
-        <span class="rating-stars">⭐</span>
-        {{ product.rating.rate }}/5 ({{ product.rating.count }} reviews)
-      </p>
-
-      <img :src="product.image" :alt="product.title" class="product-image" />
-
-      <p class="product-description">{{ product.description }}</p>
-
-      <p class="price">${{ product.price }}</p>
-
-      <div class="button-group">
-        <button class="btn-buy">Buy now</button>
-        <button class="btn-next" @click="nextProduct">Next product</button>
+    <!-- Product Display (Men's & Women's) -->
+    <div v-else-if="product" class="product-card">
+      <!-- Product Image -->
+      <div class="product-image-wrapper">
+        <img :src="product.image" :alt="product.title" class="product-image" />
       </div>
-    </div>
 
-    <!-- Women's Clothing -->
-    <div
-      v-else-if="product && product.category === 'women\'s clothing'"
-      class="product-card"
-    >
-      <h2 class="product-title">{{ product.title }}</h2>
-      <p class="category-badge">{{ product.category }}</p>
-      <p class="rating">
-        <span class="rating-stars">⭐</span>
-        {{ product.rating.rate }}/5 ({{ product.rating.count }} reviews)
-      </p>
+      <!-- Product Info -->
+      <div class="product-info">
+        <h2 class="product-title">{{ product.title }}</h2>
 
-      <img :src="product.image" :alt="product.title" class="product-image" />
+        <!-- Category & Rating Row -->
+        <div class="category-rating-row">
+          <p class="category-badge">{{ product.category }}</p>
+          <div class="rating">
+            <span>{{ product.rating.rate }}/5</span>
+            <div class="rating-stars">
+              <span
+                v-for="n in 5"
+                :key="n"
+                class="star"
+                :class="
+                  n <= Math.round(product.rating.rate) ? 'filled' : 'empty'
+                "
+              ></span>
+            </div>
+          </div>
+        </div>
 
-      <p class="product-description">{{ product.description }}</p>
+        <!-- Description -->
+        <p class="product-description">{{ product.description }}</p>
 
-      <p class="price">${{ product.price }}</p>
+        <!-- Price -->
+        <p class="price">${{ product.price }}</p>
 
-      <div class="button-group">
-        <button class="btn-buy">Buy now</button>
-        <button class="btn-next" @click="nextProduct">Next product</button>
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="btn-buy">Buy now</button>
+          <button class="btn-next" @click="nextProduct">Next product</button>
+        </div>
       </div>
     </div>
 
     <!-- Unavailable Product -->
     <div v-else class="unavailable-card">
-      <h2 class="unavailable-title">This product is unavailable to show</h2>
-      <p class="unavailable-text">
-        We're sorry, this product is not in our clothing collection.
-      </p>
-      <button class="btn-next" @click="nextProduct">Next product</button>
+      <!-- Sad face akan muncul via ::before dan ::after CSS -->
+
+      <div class="unavailable-content">
+        <h2 class="unavailable-title">This product is unavailable to show</h2>
+        <button class="btn-next" @click="nextProduct">Next product</button>
+      </div>
     </div>
   </div>
 </template>

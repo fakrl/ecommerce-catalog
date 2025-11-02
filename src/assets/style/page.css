@@ -25,7 +25,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
 }
 
@@ -38,70 +38,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
 
 /* ========================================
-   BACKGROUND PATTERNS (SHAPES)
-======================================== */
-/* ========================================
-   BACKGROUND PATTERNS (SHAPES)
-======================================== */
-
-/* Women Section - Pink Pattern */
-.women-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background-image: url('@/assets/images/pattern-shapes.svg');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 1; /* Pattern udah punya opacity di SVG-nya */
-}
-
-/* Men Section - Blue Pattern */
-.men-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background-image: url('@/assets/images/pattern-shapes.svg');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 1;
-  /* Filter buat ubah warna dari pink/black ke blue */
-  filter: hue-rotate(180deg) saturate(0.8) brightness(1.1);
-}
-
-/* HAPUS ::after (ga dipake lagi) */
-.women-section::after,
-.men-section::after {
-  display: none !important;
-}
-
-/* ========================================
    GRADIENT BACKGROUNDS
 ======================================== */
-/* GRADIENT BACKGROUNDS (cari bagian ini, pastikan sama) */
 .men-section {
   background: linear-gradient(
     to bottom, 
     var(--light-blue) 0%, 
-    var(--light-blue) 60%, 
-    var(--white) 60%, 
+    var(--light-blue) 65.8%, 
+    var(--white) 65.8%, 
     var(--white) 100%
   );
 }
@@ -110,47 +60,65 @@ body {
   background: linear-gradient(
     to bottom, 
     var(--light-pink) 0%, 
-    var(--light-pink) 60%, 
-    var(--white) 60%, 
+    var(--light-pink) 65.8%, 
+    var(--white) 65.8%, 
+    var(--white) 100%
+  );
+}
+
+.unavailable-section {
+  background: linear-gradient(
+    to bottom, 
+    var(--light-gray) 0%, 
+    var(--light-gray) 65.8%, 
+    var(--white) 65.8%, 
     var(--white) 100%
   );
 }
 
 /* ========================================
-   UNAVAILABLE SECTION
+   BACKGROUND PATTERNS (SHAPES)
 ======================================== */
-.unavailable-card {
-  background-color: var(--white);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  padding: 80px 40px;
-  max-width: 550px;
+.women-section::before,
+.men-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 10; /* Pastikan di atas pattern */
+  height: 65.8%;
+  background-image: url('@/assets/images/pattern-shapes.svg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
 }
 
-/* Sad Face Background */
+/* Men Section - Filter buat warna biru */
+.men-section::before {
+  filter: hue-rotate(200deg) saturate(1.2) brightness(1);
+}
+
+/* ========================================
+   UNAVAILABLE SECTION BACKGROUND
+======================================== */
 .unavailable-section::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 400px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-image: url('@/assets/images/sad-face.svg');
   background-repeat: no-repeat;
-  background-size: 500px auto; /* Kecil dikit */
-  opacity: 0.1; /* Lebih transparan */  background-position: center center;
+  background-size: contain;
+  background-position: center;
   z-index: 0;
   pointer-events: none;
-}
-
-/* Hapus ::after (emoji) */
-.unavailable-section::after {
-  display: none !important;
+  opacity: 0.08;
 }
 
 /* ========================================
@@ -159,57 +127,182 @@ body {
 .product-card,
 .unavailable-card {
   background-color: var(--white);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  padding: 40px;
-  max-width: 550px;
-  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 4px 21px rgba(0, 0, 0, 0.2);
+  padding: 50px 48px;
+  max-width: 1034px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
   position: relative;
-  z-index: 1;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
 /* ========================================
-   MEN'S SECTION STYLES
+   PRODUCT IMAGE SECTION
 ======================================== */
+.product-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 301px;
+  height: 383px;
+  object-fit: contain;
+}
+
+/* ========================================
+   PRODUCT INFO SECTION
+======================================== */
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+  margin-bottom: 17px;
+}
+
 .men-section .product-title {
   color: var(--navy-blue);
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  line-height: 1.4;
 }
 
-.men-section .category-badge {
-  color: var(--navy-blue);
-  font-size: 14px;
-  margin-bottom: 8px;
-  font-weight: 500;
+.women-section .product-title {
+  color: var(--magenta);
 }
 
-.men-section .rating {
+/* ========================================
+   CATEGORY & RATING ROW
+======================================== */
+.category-rating-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 21px;
+  padding-bottom: 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.category-badge {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
   color: var(--dark-gray);
-  font-size: 14px;
-  margin-bottom: 20px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark-gray);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.men-section .star.filled {
+  background-color: var(--navy-blue);
+}
+
+.women-section .star.filled {
+  background-color: var(--magenta);
+}
+
+.star.empty {
+  background-color: var(--white);
+  border: 1px solid;
+}
+
+.men-section .star.empty {
+  border-color: var(--navy-blue);
+}
+
+.women-section .star.empty {
+  border-color: var(--magenta);
+}
+
+/* ========================================
+   PRODUCT DESCRIPTION
+======================================== */
+.product-description {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--black);
+  margin-bottom: 34px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   PRICE
+======================================== */
+.price {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+  margin-bottom: 15px;
 }
 
 .men-section .price {
   color: var(--navy-blue);
-  font-size: 32px;
-  font-weight: 700;
-  margin: 20px 0;
 }
 
+.women-section .price {
+  color: var(--magenta);
+}
+
+/* ========================================
+   BUTTON GROUP
+======================================== */
+.button-group {
+  display: flex;
+  gap: 19px;
+}
+
+.btn-buy,
+.btn-next {
+  width: 259px;
+  height: 42px;
+  border-radius: 4px;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Men Section Buttons */
 .men-section .btn-buy {
   background-color: var(--navy-blue);
   color: var(--white);
-  border: none;
-  padding: 14px 36px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-right: 12px;
-  transition: all 0.3s ease;
 }
 
 .men-section .btn-buy:hover {
@@ -221,13 +314,7 @@ body {
 .men-section .btn-next {
   background-color: var(--white);
   color: var(--navy-blue);
-  border: 2px solid var(--navy-blue);
-  padding: 14px 36px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border: 3px solid var(--navy-blue);
 }
 
 .men-section .btn-next:hover {
@@ -236,48 +323,10 @@ body {
   transform: translateY(-2px);
 }
 
-/* ========================================
-   WOMEN'S SECTION STYLES
-======================================== */
-.women-section .product-title {
-  color: var(--magenta);
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.women-section .category-badge {
-  color: var(--magenta);
-  font-size: 14px;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.women-section .rating {
-  color: var(--dark-gray);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.women-section .price {
-  color: var(--magenta);
-  font-size: 32px;
-  font-weight: 700;
-  margin: 20px 0;
-}
-
+/* Women Section Buttons */
 .women-section .btn-buy {
   background-color: var(--magenta);
   color: var(--white);
-  border: none;
-  padding: 14px 36px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-right: 12px;
-  transition: all 0.3s ease;
 }
 
 .women-section .btn-buy:hover {
@@ -289,13 +338,7 @@ body {
 .women-section .btn-next {
   background-color: var(--white);
   color: var(--magenta);
-  border: 2px solid var(--magenta);
-  padding: 14px 36px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border: 3px solid var(--magenta);
 }
 
 .women-section .btn-next:hover {
@@ -305,93 +348,155 @@ body {
 }
 
 /* ========================================
-   UNAVAILABLE SECTION STYLES
+   UNAVAILABLE SECTION
 ======================================== */
-.unavailable-card {
-  text-align: center;
-  padding: 80px 40px;
+.unavailable-section {
+  background: linear-gradient(
+    to bottom, 
+    #D8D7D7 0%, 
+    #D8D7D7 65.8%, 
+    var(--white) 65.8%, 
+    var(--white) 100%
+  );
   position: relative;
-  z-index: 1;
 }
 
-.unavailable-title {
-  color: var(--dark-gray);
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.unavailable-text {
-  color: var(--dark-gray);
-  font-size: 16px;
-  margin-bottom: 32px;
-  opacity: 0.8;
-}
-
-.unavailable-section .btn-next {
-  background-color: var(--dark-gray);
-  color: var(--white);
-  border: none;
-  padding: 14px 36px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.unavailable-section .btn-next:hover {
-  background-color: var(--black);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* NO background pattern or sad face here */
+.unavailable-section::before,
+.unavailable-section::after {
+  display: none;
 }
 
 /* ========================================
-   COMMON ELEMENTS
+   UNAVAILABLE CARD
 ======================================== */
-.product-image {
-  width: 100%;
-  max-width: 280px;
-  height: 280px;
-  object-fit: contain;
-  margin: 24px auto;
-  display: block;
-}
-
-.product-description {
-  color: var(--dark-gray);
-  font-size: 14px;
-  line-height: 1.7;
-  text-align: left;
-  margin: 16px 0;
-  opacity: 0.9;
-}
-
-.rating-stars {
-  color: #FFD700;
-  font-size: 16px;
-}
-
-.button-group {
-  margin-top: 24px;
+.unavailable-card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 100px 60px;
+  max-width: 1034px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  min-height: 580px;
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Sad Face - Eyes (using : character) */
+.unavailable-card::before {
+  content: ':';
+  position: absolute;
+  width: 229px;
+  height: 1002px;
+  left: 26px;
+  top: 107px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 828px;
+  line-height: 1002px;
+  color: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+  z-index: 0;
+}
+
+/* Sad Face - Mouth (using ( character) */
+.unavailable-card::after {
+  content: '(';
+  position: absolute;
+  width: 300px;
+  height: 1002px;
+  left: 2px;
+  top: 246px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 828px;
+  line-height: 1002px;
+  color: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+  z-index: 0;
+}
+
+/* Eyebrow Left */
+.unavailable-content::before {
+  content: '';
+  position: absolute;
+  width: 185.5px;
+  height: 29.21px;
+  left: 133px;
+  top: 14px;
+  border-top: 25px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Eyebrow Right */
+.unavailable-content::after {
+  content: '';
+  position: absolute;
+  width: 185.5px;
+  height: 29.21px;
+  right: 133px;
+  top: 14px;
+  border-top: 25px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: scaleX(-1);
+  z-index: 0;
+}
+
+/* Sad Face Content Wrapper (above the face) */
+.unavailable-content {
+  position: relative;
+  z-index: 10;
+}
+
+.unavailable-title {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  margin-bottom: 13px;
+}
+
+.unavailable-section .btn-next {
+  background-color: var(--white);
+  color: var(--dark-gray);
+  border: 3px solid #000000;
+  width: 465px;
+  max-width: 100%;
+  height: 42px;
+  margin: 0 auto;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.unavailable-section .btn-next:hover {
+  background-color: #000000;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 /* ========================================
    LOADING SPINNER
 ======================================== */
 .loader {
-  padding: 80px;
+  padding: 100px;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 .spinner {
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  border-top: 5px solid var(--navy-blue);
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top: 6px solid var(--navy-blue);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -405,27 +510,70 @@ body {
 }
 
 .loader p {
-  color: var(--dark-gray);
-  font-size: 16px;
+  font-family: 'Inter';
   font-weight: 500;
+  font-size: 18px;
+  color: var(--dark-gray);
 }
 
 /* ========================================
    RESPONSIVE
 ======================================== */
+@media (max-width: 1100px) {
+  .product-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 32px;
+  }
+  
+  .product-image-wrapper {
+    order: -1;
+  }
+}
+
 @media (max-width: 768px) {
   .product-card,
   .unavailable-card {
-    padding: 30px 20px;
+    padding: 32px 24px;
+    width: calc(100% - 32px);
+    margin: 0 16px;
+  }
+  
+  .product-title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  
+  .product-description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  .price {
+    font-size: 24px;
+    line-height: 30px;
   }
   
   .button-group {
     flex-direction: column;
+    gap: 12px;
   }
   
   .btn-buy,
   .btn-next {
     width: 100%;
-    margin: 6px 0;
+  }
+  
+  .category-rating-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-image {
+    max-width: 250px;
+    height: 320px;
   }
 }
