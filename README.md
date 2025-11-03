@@ -47,7 +47,7 @@ ecommerce-catalog/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/[username]/ecommerce-catalog.git
+git clone https://github.com/fakrl/ecommerce-catalog.git
 cd ecommerce-catalog
 ```
 
